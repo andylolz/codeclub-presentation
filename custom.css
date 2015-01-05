@@ -131,7 +131,7 @@ span.demo-highlight {
   background-color: #000;
   color: #0f0;
   line-height: 1.3em;
-  font-size: 100%; 
+  font-size: 100%;
   border: 2px solid #0f0;
   font-family: monospace;
 }
@@ -232,6 +232,10 @@ a.image-credit.at-top-left {
   top: 0;
   left: 0;
 }
+a.image-credit.at-top-right {
+  top: 0;
+  right: 0;
+}
 .key-button {
   border:1px solid gray;
   padding:0.1em 0.3em;
@@ -246,57 +250,51 @@ a.image-credit.at-top-left {
   float:left;
 }
 body.demo {
-  background: url(demo-images/random_sky.jpg) no-repeat center center fixed; 
+  background: url(demo-images/random_sky.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
+body.demo-title {
+  background-image: url(andy-images/home.png);
+}
+body.demo-fixed-it {
+  background-color: black;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+body.demo-fixed-it-1 {
+  background-image: url(andy-images/dock.jpg);
+}
+body.demo-fixed-it-2 {
+  background-image: url(andy-images/mocha.jpg);
+}
+body.demo-projects {
+  background-image: url(andy-images/projects.png);
+}
+body.demo-pdf {
+  background-image: url(andy-images/pdf.png);
+}
+body.demo-github {
+  background-image: url(andy-images/github.png);
+}
+body.demo-rik {
+  background-image: url(andy-images/rik.jpg);
+}
+body.demo-issue {
+  background-image: url(andy-images/issue.png);
+}
 body.demo-code {
-  background-image: url(demo-images/green_torus.png); 
-  background-repeat: repeat;
+  background-image: url(andy-images/code.png);
 }
-body.demo-albert-hall {
-  background-image: url(demo-images/pennymaycock_4727397006.jpg);   
-}
-body.demo-bittern {
-  background-image: url(demo-images/pennymaycock_5226316014.jpg);   
-}
-body.demo-cliffs {
-  background-image: url(demo-images/pennymaycock_5032823700.jpg);   
-}
-body.demo-doggie {
-  background-image: url(demo-images/pennymaycock_4615986623.jpg); 
-}
-body.demo-ducklings {
-  background-image: url(demo-images/pennymaycock_14516593551.jpg);   
-}
-body.demo-horse {
-  background-image: url(demo-images/pennymaycock_4632837254.jpg);   
-}
-body.demo-jumping-doggie-right {
-  background-image: url(demo-images/pennymaycock_14333230290_right.jpg); 
-}
-body.demo-jumping-doggie-left {
-  background-image: url(demo-images/pennymaycock_14333230290_left.jpg); 
-}
-body.demo-lamb {
-  background-image: url(demo-images/pennymaycock_4582186480.jpg); 
-}
-body.demo-leaves {
-  background-image: url(demo-images/pennymaycock_5131277181.jpg);   
-}
-body.demo-reveal-dog {
-  background-image: url(demo-images/pennymaycock_7029826929.jpg); 
-}
-body.demo-seals {
-  background-image: url(demo-images/pennymaycock_8705386168.jpg);   
-}
-body.demo-steps {
-  background-image: url(demo-images/pennymaycock_14470512781.jpg); 
+body.demo-prs {
+  background-image: url(andy-images/prs.png);
 }
 
-/* 
+/*
    really, presentations are for full-sized screens:
    this is for rehearsal-mode
 */
@@ -310,7 +308,7 @@ body.demo-steps {
     width:90%;
   }
   .tiny-text {
-    font-size:75%;   
+    font-size:75%;
   }
   .image-credit {
     font-size:75%;

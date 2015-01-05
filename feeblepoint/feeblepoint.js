@@ -12,8 +12,8 @@
 // but if you really don't want your presentation to advance itself,
 // set want_auto_advance to false to switch it off.
 // Default/suggested value: true
-   
-var want_auto_advance = true;
+
+var want_auto_advance = false;
 
 
 //======================================================================
@@ -24,7 +24,7 @@ var want_auto_advance = true;
 // For an "ignite talk", this should be 20
 // feeblepoint will stop auto-advancing when it gets to this slide
 // number (you can manually step past it)
-   
+
 var final_slide_number = 20;
 
 // Note:
@@ -65,7 +65,7 @@ var slide_duration_in_seconds = 6;
 // This can be distracting, so set it to false.
 // The default is true simply so it's obvious in the demo.
 
-var want_shouty_progress_bar = true; 
+var want_shouty_progress_bar = true;
 
 
 
@@ -101,14 +101,14 @@ var fadeout_delay = 500;
 // number_of_digits_in_filenumber:
 //-----------------------------------------------------------------------
 // feeblepoint insists all the slides' filenames contain the same number
-// of digits. This is a design decision, since on most systems this 
+// of digits. This is a design decision, since on most systems this
 // is what you want for sensible directory/editor sidebar list order.
 // You can probably go quite high, but if you really do have 10,000
 // slides then your presentation is probably too long.
 // Default/suggested value: 2 (for 01.html, 02.html, etc.) unless you
 // have over 100 slides, in which case, 3.
 
-var number_of_digits_in_filenumber = 2; 
+var number_of_digits_in_filenumber = 2;
 
 
 //======================================================================
@@ -142,7 +142,7 @@ var progress_red_time = 2000;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 //
-// end of obviously customisable things... below here, tweak 
+// end of obviously customisable things... below here, tweak
 // everything to get it to do what you want :-)
 //
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -170,7 +170,7 @@ function get_page_number(str){
     return parseInt(nums[nums.length-1],10);
   } else {
     return NaN;
-  } 
+  }
 }
 
 function end_slide(){
@@ -215,7 +215,7 @@ function display_slide(){
   $slide.fadeIn(fadein_delay);
   if (want_auto_advance) {
     delay = parse_delay_string(
-              $slide.data("delay"), 
+              $slide.data("delay"),
               default_slide_duration_in_ms, default_slide_duration_in_ms,
               fadein_delay + fadeout_delay);
     slide_display_time = delay;
@@ -227,9 +227,9 @@ function display_another_slide(is_going_forward) {
   var newLocation = location.href + "";
   var page_number = get_page_number();
   if ((is_going_forward == null) || (page_number === 1 && ! is_going_forward)) {
-    newLocation=newLocation.replace(/(\w+)\.htm/, "index.htm");    
+    newLocation=newLocation.replace(/(\w+)\.htm/, "index.htm");
   } else {
-    var newSlideNumber = 
+    var newSlideNumber =
       (
         (
           page_number + (is_going_forward? 1:-1)
@@ -255,7 +255,7 @@ function countdown(time_left){
       }
       var width = Math.floor(jQuery("body").width() * (time_left/slide_display_time));
       $progress_bar.width(width);
-      setTimeout("countdown(" + (time_left-timer_tick) + ")", timer_tick); 
+      setTimeout("countdown(" + (time_left-timer_tick) + ")", timer_tick);
     }
   }
 }
@@ -264,7 +264,7 @@ function toggle_pause_play(){
   is_paused = ! is_paused;
   var x = (jQuery(document).width()-$pause_alert.width())/2;
   if (is_paused) {
-    $pause_alert.removeClass('feeble-resume');    
+    $pause_alert.removeClass('feeble-resume');
   } else {
     $pause_alert.addClass('feeble-resume');
   }
@@ -300,9 +300,12 @@ jQuery(function() {
     }
     $body.prepend($progress_bar);
     $body.append(jQuery("<div></div>").attr("id", pause_alert_id));
-    $body.on('click', function(){toggle_pause_play()});
+    $body.on('click', function(){display_another_slide(NEXT);});
+  } else {
+    var $body = jQuery("body")
+    $body.on('click', function(){display_another_slide(NEXT);});
   }
-  $pause_alert = jQuery('#'+pause_alert_id);  
+  $pause_alert = jQuery('#'+pause_alert_id);
   display_slide(); // note; sets slide_display_time
   jQuery(".reveal").each(function(){
     var delay = parse_delay_string(
@@ -313,13 +316,13 @@ jQuery(function() {
     if (jQuery(this).data('method') === 'slideDown') {
       jQuery(this).delay(delay).slideDown();
     } else {
-      jQuery(this).delay(delay).fadeIn();      
+      jQuery(this).delay(delay).fadeIn();
     }
   });
   // if the user has made a function called feeblepoint, run it
   // now that the DOM is ready:
   // this is useful if you want to write JavaScript for a specific
-  // slide in the presentation, and have it executed when the page 
+  // slide in the presentation, and have it executed when the page
   // has loaded
   if (typeof(feeblepoint) == typeof(Function)){
     feeblepoint();
